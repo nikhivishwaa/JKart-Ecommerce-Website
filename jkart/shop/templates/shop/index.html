@@ -5,7 +5,7 @@
 {% block title %}Home{% endblock %}
 
 {% block link %}
-    <link rel="stylesheet" href="{% static 'shop/CSS/carousal.css' %}">
+<link rel="stylesheet" href="{% static 'shop/CSS/carousal.css' %}">
 {% endblock %}
 
 
@@ -19,6 +19,7 @@
 </section>
 <div class="carousal">
     <div class="slide">
+        <a onclick="prevSlide()" class="shift-slide">❮</a>
         <div class="items">
             <img src="/media/shop/images/redmi11.png" alt="product 1">
             <div class="caption">
@@ -51,6 +52,111 @@
             </div>
             <button class="btn">Add to Cart</button>
         </div>
+        <a onclick="nextSlide()" class="shift-slide">❯</a>
+    </div>
+    <div class="slide">
+        <a onclick="prevSlide()" class="shift-slide">❮</a>
+        <div class="items">
+            <img src="/media/shop/images/redmi11.png" alt="product 1">
+            <div class="caption">
+                <h3>Redmi Note 12 (6GB RAM, 128GB, Ice Blue)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+        <div class="items">
+            <img src="/media/shop/images/iphone.png" alt="product 1">
+            <div class="caption">
+                <h3>Apple iPhone 15 (128GB, Blue)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+        <div class="items">
+            <img src="/media/shop/images/onePlus.png" alt="product 1">
+            <div class="caption">
+                <h3>OnePlus Nord CE 3 Lite 5G (8GB RAM, 256GB, Pastel Lime)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+        <div class="items">
+            <img src="/media/shop/images/opporeno10.png" alt="product 1">
+            <div class="caption">
+                <h3>oppo Reno 10 5G (8GB RAM, 256GB, Silvery Grey)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+        <a onclick="nextSlide()" class="shift-slide">❯</a>
+    </div>
+    <div class="slide">
+        <a onclick="prevSlide()" class="shift-slide">❮</a>
+        <div class="items">
+            <img src="/media/shop/images/opporeno10.png" alt="product 1">
+            <div class="caption">
+                <h3>oppo Reno 10 5G (8GB RAM, 256GB, Silvery Grey)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+        <div class="items">
+            <img src="/media/shop/images/redmi11.png" alt="product 1">
+            <div class="caption">
+                <h3>Redmi Note 12 (6GB RAM, 128GB, Ice Blue)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+        <div class="items">
+            <img src="/media/shop/images/iphone.png" alt="product 1">
+            <div class="caption">
+                <h3>Apple iPhone 15 (128GB, Blue)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+        <div class="items">
+            <img src="/media/shop/images/onePlus.png" alt="product 1">
+            <div class="caption">
+                <h3>OnePlus Nord CE 3 Lite 5G (8GB RAM, 256GB, Pastel Lime)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+        <a onclick="nextSlide()" class="shift-slide">❯</a>
     </div>
 </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    let active = 0;
+    let slides = document.getElementsByClassName('slide');
+
+    function nextSlide() {
+        if (active < slides.length - 1) {
+            slides[active].style.display = "none";
+            active++;
+            slides[active].style.display = "flex";
+        }
+        else {
+            slides[active].style.display = "none";
+            slides[0].style.display = "flex";
+            active = 0;
+        }
+    }
+    function prevSlide() {
+        if (active > 0) {
+            slides[active].style.display = "none";
+            active--;
+            slides[active].style.display = "flex";
+        }
+        else {
+            slides[active].style.display = "none";
+            slides[slides.length - 1].style.display = "flex";
+            active = slides.length - 1;
+        }
+    }
+</script>
 {% endblock %}

@@ -9,6 +9,10 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    display: none;
+}
+.slide:first-child {
+    display: flex;
 }
 
 .items {
