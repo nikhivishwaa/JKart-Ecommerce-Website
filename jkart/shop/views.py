@@ -10,7 +10,7 @@ def index(request):
     products = Product.objects.all()
     n = len(products)
     no_of_slides = n//4 + ceil(n/4 - n//4)
-    params = {"no_of_slides" : no_of_slides, "range": range(1, no_of_slides), "products": products}
+    params = {"ravi":"ravika","no_of_slides" : no_of_slides, "range": range(0, no_of_slides), "products": products}
     return render(request, 'shop/index.html', params)
 
 def offers(request):

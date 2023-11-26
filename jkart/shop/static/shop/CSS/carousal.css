@@ -5,13 +5,25 @@
     flex-direction: column;
 }
 
-.slide {
+.carousal ul {
     display: flex;
     align-items: center;
     justify-content: space-around;
     display: none;
 }
-.slide:first-child {
+.carousal ul li{
+    list-style: none;
+}
+.carousal ul a {
+    cursor: pointer;
+    padding: 8px;
+}
+.carousal ul li a:hover {
+    color: var(--color);
+    background-color: var(--bgcolor);
+    border-radius: 5px;
+}
+.carousal ul:first-child {
     display: flex;
 }
 
