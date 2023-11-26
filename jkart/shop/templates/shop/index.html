@@ -1,12 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi alias a repellendus amet in dolorum culpa fugiat quidem minus commodi totam, quia, cumque dolor? Ab provident suscipit modi quaerat blanditiis inventore, hic maxime aspernatur laborum vero? Provident, voluptatum ipsum at corrupti officiis natus amet dicta doloribus quas tempora est suscipit, eaque ut omnis animi, reprehenderit maiores! Et suscipit dignissimos doloremque illum sed nisi iste praesentium. Porro tempore, doloribus corrupti veniam, nemo assumenda officiis maiores enim magni, unde omnis molestias nostrum laboriosam cupiditate sunt voluptas rerum aliquid similique ad. Iure est quam, voluptas molestias consequatur repellendus at iusto aliquid corrupti illo.</h1>
-</body>
-</html>
+{% extends 'shop/basic.html' %}
+
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'shop/CSS/carousal.css' %}">
+{% endblock %}
+
+
+{% block body %}
+<section>
+    <form action="" id="search-bar" method="post">
+        {% csrf_token %}
+        <input type="search" class="outline-animation" placeholder="Search..." name="search">
+        <input type="submit" value="Search" class="btn">
+    </form>
+</section>
+<div class="carousal">
+    <div class="slide">
+        <div class="items">
+            <img src="/media/shop/images/redmi11.png" alt="product 1">
+            <div class="caption">
+                <h3>Redmi Note 12 (6GB RAM, 128GB, Ice Blue)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+        <div class="items">
+            <img src="/media/shop/images/opporeno10.png" alt="product 1">
+            <div class="caption">
+                <h3>oppo Reno 10 5G (8GB RAM, 256GB, Silvery Grey)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+        <div class="items">
+            <img src="/media/shop/images/onePlus.png" alt="product 1">
+            <div class="caption">
+                <h3>OnePlus Nord CE 3 Lite 5G (8GB RAM, 256GB, Pastel Lime)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+        <div class="items">
+            <img src="/media/shop/images/iphone.png" alt="product 1">
+            <div class="caption">
+                <h3>Apple iPhone 15 (128GB, Blue)</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <button class="btn">Add to Cart</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

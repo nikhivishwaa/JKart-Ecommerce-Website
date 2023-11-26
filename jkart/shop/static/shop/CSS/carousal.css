@@ -1,0 +1,54 @@
+.carousal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.slide {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #519cae17;
+    border-radius: 28px;
+    width: 350px;
+    aspect-ratio: 9/10;
+    margin: 0px 8px;
+}
+
+.items img {
+    display: block;
+    margin: 5px auto;
+    height: 58%;
+}
+
+.caption {
+    margin: 15px 10px;
+}
+
+.caption h3 {
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.caption p {
+    font-size: .9rem;
+    text-align: center;
+}
+
+.btn{
+    background-color: var(--bgcolor);
+    color: var(--color);
+    font-size: 1rem;
+    padding: 5px 23px;
+    border: 2px solid var(--bgcolor);
+    border-radius: 28px;
+    margin: 8px;
+}

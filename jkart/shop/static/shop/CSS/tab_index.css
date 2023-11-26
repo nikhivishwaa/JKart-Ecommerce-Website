@@ -1,0 +1,22 @@
+/* Navbar setting for tablet and mobile */
+#navbar{
+    justify-content: space-between;
+}
+#navbar ul{
+    display: none;
+}
+
+/* Navbar: Logo Section styling */
+.logo-section img {
+    width: 40px;
+    height: 40px;
+    margin: 6px;
+}
+.logo-section h1{
+    font-size: 1.4rem;
+}
+
+/* Navigation Menu button visible */
+#nav-menu{
+    display: flex;
+}
