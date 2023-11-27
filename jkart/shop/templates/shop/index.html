@@ -26,36 +26,21 @@
     {% endfor %}
 </div>
 {% for j in products|slice:"0:" %}
-<li class="items" id="pr{{j.product_id}}">
+<li class="items">
     <img src="/media/{{j.image}}" alt="product 1">
     <div class="caption">
         <h3>{{j.product_name}}</h3>
         <p>{{j.product_description|truncatechars_html:'40' }}</p>
     </div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn cart" id="pr{{j.id}}">Add to Cart</button>
 </li>
 {% endfor %}
 {% endblock %}
 
 {% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-    // add to cart logic
     
-    if(localStorage.getItem('cart') == null){
-        var cart = {};
-        console.log("cart");
-    }
-    else{
-        cart = JSON.parse(localStorage.setItem('cart'));
-        console.log(cart);
-    }
-
-    // JQuery
-    $(".cart").click(()=>{
-        console.log("clicked");
-    });
-
-    console.log("cart");
     let active = 0;
     let slides = document.querySelectorAll('.carousal ul');
     let items = document.getElementsByClassName('items');
@@ -64,10 +49,9 @@
     let l = items.length;
 
 
-    if (items.length % 4 > 0) nslides += 1;
-    
+    if (items.length % 4 > 0) nslides += 1;    
     let g;
-    for (let i = 0; i < nslides; i++) {
+    for (let i = 0; i < nslides - 1; i++) {
         g = document.querySelector(`.carousal ul:nth-child(${i + 1})`);    
         g.innerHTML = '<li><a onclick="prevSlide()" class="shift-slide">❮</a></li>';
 
@@ -105,7 +89,34 @@
             active = slides.length - 1;
         }
     }
+    // add to cart logic
+    
+    if(localStorage.getItem('cart') == null){
+        var cart = {};
+        console.log("cart");
+    }
+    else{
+        cart = JSON.parse(localStorage.getItem('cart'));
+        console.log(cart);
+    }
 
+    // JQuery
+    $('.cart').click(function (){
+        console.log("clicked");
+        let additem = this.id.toString();
+        console.log(additem);
+
+        if(cart[additem] != undefined){
+            cart[additem] += 1; 
+        }
+        else{
+            cart[additem] = 1; 
+        }
+        console.log(cart);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    });
+
+    let foo = () =>{ localStorage.clear();}
 
 </script>
 {% endblock %}

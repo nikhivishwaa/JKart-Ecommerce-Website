@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Product(models.Model):
-    product_id = models.AutoField
+    id = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=50)
     product_description = models.CharField(max_length=300)
     category = models.CharField(max_length=30,default="")  # default argument fill the null fields of prev table
