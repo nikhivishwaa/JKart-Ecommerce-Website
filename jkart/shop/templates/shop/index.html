@@ -14,7 +14,7 @@
     <form action="" id="search-bar" method="post">
         {% csrf_token %}
         <input type="search" class="outline-animation" placeholder="Search..." name="search">
-        <input type="submit" value="Search" class="btn">
+        <input type="submit" value="Search" class="btn .cart">
     </form>
 </section>
 <div class="carousal">
@@ -26,7 +26,7 @@
     {% endfor %}
 </div>
 {% for j in products|slice:"0:" %}
-<li class="items">
+<li class="items" id="pr{{j.product_id}}">
     <img src="/media/{{j.image}}" alt="product 1">
     <div class="caption">
         <h3>{{j.product_name}}</h3>
@@ -39,6 +39,23 @@
 
 {% block script %}
 <script>
+    // add to cart logic
+    
+    if(localStorage.getItem('cart') == null){
+        var cart = {};
+        console.log("cart");
+    }
+    else{
+        cart = JSON.parse(localStorage.setItem('cart'));
+        console.log(cart);
+    }
+
+    // JQuery
+    $(".cart").click(()=>{
+        console.log("clicked");
+    });
+
+    console.log("cart");
     let active = 0;
     let slides = document.querySelectorAll('.carousal ul');
     let items = document.getElementsByClassName('items');
@@ -48,15 +65,17 @@
 
 
     if (items.length % 4 > 0) nslides += 1;
+    
+    let g;
     for (let i = 0; i < nslides; i++) {
-        let g = document.querySelector(`.carousal ul:nth-child(${i + 1})`);    
-        g.innerHTML = `<li><a onclick="prevSlide()" class="shift-slide">❮</a></li>`;
+        g = document.querySelector(`.carousal ul:nth-child(${i + 1})`);    
+        g.innerHTML = '<li><a onclick="prevSlide()" class="shift-slide">❮</a></li>';
 
         for (let j = 0; j < 4; j++) {
             g.append(items[i*4 + j]);   
             if((i*4+j+1) == l) break; 
         }
-        g.innerHTML += ` <li><a onclick="nextSlide()" class="shift-slide">❯</a></li>`;    
+        g.innerHTML += ' <li><a onclick="nextSlide()" class="shift-slide">❯</a></li>';    
     }
 
 
@@ -86,5 +105,7 @@
             active = slides.length - 1;
         }
     }
+
+
 </script>
 {% endblock %}
