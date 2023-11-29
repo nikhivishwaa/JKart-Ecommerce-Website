@@ -1,0 +1,38 @@
+{% extends 'shop/basic.html' %}
+
+
+{% block title %}Add Products in Jkart{% endblock %}
+
+
+{% block body %}
+
+<div class="product-container">
+    <form action="" method="post">
+        {% csrf_token %}    
+        <label for="name">Product Name</label>
+        <input type="text" name="name" id="name" required>
+
+        <label for="desc">Description</label>
+        <textarea name="desc" id="desc" cols="30" rows="10" required></textarea>
+
+        <label for="category">Category</label>
+        <input type="text" name="category" id="category" required>
+
+        <label for="sub-category">Sub Category</label>
+        <input type="text" name="sub-category" id="sub-category" required>
+
+        <label for="publish-date">Publish Date</label>
+        <input type="date" name="publish-date" id="publish-date" today>
+
+        <label for="price">Price in &#8377</label>
+        <input type="number" name="price" id="price" required>
+
+        <label for="image">Product Image</label>
+        <input type="image" name="image" id="image">
+
+        <input type="submit" value="Add Product" class="btn">
+        <input type="reset" value="Cancel" class="btn">
+    </form>
+</div>
+
+{% endblock %}
