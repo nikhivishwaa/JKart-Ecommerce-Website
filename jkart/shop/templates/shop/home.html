@@ -1,0 +1,109 @@
+{% extends 'shop/basic.html' %}
+
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'shop/CSS/carousal.css' %}">
+{% endblock %}
+
+
+{% block body %}
+<section>
+    <form action="" id="search-bar" method="post">
+        {% csrf_token %}
+        <input type="search" class="outline-animation" placeholder="Search..." name="search">
+        <input type="submit" value="Search" class="btn .cart">
+    </form>
+</section>
+<div class="carousal">
+    
+    
+    <ul class="slide">
+        <li><a onclick="prevSlide()" class="shift-slide">❮</a></li>
+        {% for j in products|slice:"0:" %}
+        <li class="items">
+            <img src="/media/{{j.image}}" alt="product 1">
+            <div class="caption">
+                <h3>{{j.product_name}} </h3>
+                <p>{{j.product_description|truncatechars_html:'40' }}</p>
+            </div>
+            <button class="btn cart" id="pr{{j.id}}">Add to Cart</button>
+        </li>
+        {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+        <li><a onclick="nextSlide()" class="shift-slide">❯</a></li>    
+    </ul>
+    <ul class="slide">
+        <li><a onclick="prevSlide()" class="shift-slide">❮</a></li>
+        
+        {% endif %}
+        {% endfor %}
+        <li><a onclick="nextSlide()" class="shift-slide">❯</a></li>    
+    </ul>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+
+    let active = 0;
+    let slides = document.querySelectorAll('.carousal ul');
+    let items = document.getElementsByClassName('items');
+
+    function nextSlide() {
+        if (active < slides.length - 1) {
+            slides[active].style.display = "none";
+            active++;
+            slides[active].style.display = "flex";
+        }
+        else {
+            slides[active].style.display = "none";
+            slides[0].style.display = "flex";
+            active = 0;
+        }
+    }
+    function prevSlide() {
+        if (active > 0) {
+            slides[active].style.display = "none";
+            active--;
+            slides[active].style.display = "flex";
+        }
+        else {
+            slides[active].style.display = "none";
+            slides[slides.length - 1].style.display = "flex";
+            active = slides.length - 1;
+        }
+    }
+    // add to cart logic
+
+    if (localStorage.getItem('cart') == null) {
+        var cart = {};
+        console.log("cart");
+    }
+    else {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        console.log(cart);
+    }
+
+    // JQuery
+    $('.cart').click(function () {
+        console.log("clicked");
+        let additem = this.id.toString();
+        console.log(additem);
+
+        if (cart[additem] != undefined) {
+            cart[additem] += 1;
+        }
+        else {
+            cart[additem] = 1;
+        }
+        console.log(cart);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    });
+
+    let foo = () => { localStorage.clear(); }
+
+</script>
+{% endblock %}
