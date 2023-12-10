@@ -32,8 +32,10 @@ def addProduct(request):
 def offers(request):
     return render(request, 'shop/offers.html')
 
-def prodView(request):
-    return HttpResponse('shop prodView page')
+def prodView(request, id):
+    product = Product.objects.filter(id=id)
+    print(product)
+    return render(request, 'shop/product_page.html', {'product':product[0]})
 
 def cart(request):
     return HttpResponse('shop cart page')

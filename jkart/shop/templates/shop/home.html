@@ -18,8 +18,8 @@
     </form>
 </section>
 <div class="carousal">
-    
-    
+
+
     <ul class="slide">
         <li><a onclick="prevSlide()" class="shift-slide">❮</a></li>
         {% for j in products|slice:"0:" %}
@@ -29,17 +29,22 @@
                 <h3>{{j.product_name}} </h3>
                 <p>{{j.product_description|truncatechars_html:'40' }}</p>
             </div>
-            <button class="btn cart" id="pr{{j.id}}">Add to Cart</button>
+            <div>
+                <button class="btn cart" id="pr{{j.id}}">Add to Cart</button>
+                <a href="/shop/products/{{j.id}}">
+                    <button class="btn cart" id="qv{{j.id}}">Quick View</button>
+                </a>
+            </div>
         </li>
         {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
-        <li><a onclick="nextSlide()" class="shift-slide">❯</a></li>    
+        <li><a onclick="nextSlide()" class="shift-slide">❯</a></li>
     </ul>
     <ul class="slide">
         <li><a onclick="prevSlide()" class="shift-slide">❮</a></li>
-        
+
         {% endif %}
         {% endfor %}
-        <li><a onclick="nextSlide()" class="shift-slide">❯</a></li>    
+        <li><a onclick="nextSlide()" class="shift-slide">❯</a></li>
     </ul>
 </div>
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'shop/basic.html' %}
+
+
+{% block title %} {{product.product_name}}{% endblock %}
+
+
+{% block body %}
+
+    <div class="container">
+        <div class="prod-image">
+            <img src="{{product.product_image}}" alt="">
+        </div>
+        <div class="prod-detail"></div>
+    </div>
+
+{% endblock %}
+
