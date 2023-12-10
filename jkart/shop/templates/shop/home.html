@@ -29,10 +29,10 @@
                 <h3>{{j.product_name}} </h3>
                 <p>{{j.product_description|truncatechars_html:'40' }}</p>
             </div>
-            <div>
+            <div id="button-section">
                 <button class="btn cart" id="pr{{j.id}}">Add to Cart</button>
                 <a href="/shop/products/{{j.id}}">
-                    <button class="btn cart" id="qv{{j.id}}">Quick View</button>
+                    <button class="btn" id="qv{{j.id}}">Quick View</button>
                 </a>
             </div>
         </li>

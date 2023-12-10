@@ -14,11 +14,11 @@
 .carousal ul li{
     list-style: none;
 }
-.carousal ul a {
+.shift-slide {
     cursor: pointer;
     padding: 8px;
 }
-.carousal ul li a:hover {
+.shift-slide:hover {
     color: var(--color);
     background-color: var(--bgcolor);
     border-radius: 5px;
