@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Product
+from .models import Product, Contact
 from math import ceil
 
 def index(request):
@@ -20,13 +20,14 @@ def addProduct(request):
         pr1.product_description =  request.POST.get('desc')
         pr1.category =  request.POST.get('category')
         pr1.sub_category =  request.POST.get('sub-category')
-        pr1.publish_date =  request.POST.get('publich-date')
+        pr1.publish_date =  request.POST.get('publish-date')
+        print(request.POST)
+        print(request.FILES)
         pr1.price =  request.POST.get('price')
-        # pr1.image =  request.POST.get('name')
-
+        pr1.image =  request.FILES.get('image')
         pr1.save()
+        return HttpResponse('<h1>Product added Successfully</h1>')
     params = {"message":"Product added Successfully"}
-    print(request)
     return render(request, 'shop/addproducts.html', params)
 
 def offers(request):
@@ -44,5 +45,15 @@ def search(request):
     return render(request, 'shop/search.html')
 
 def tracker(request):
+    return render(request, 'shop/tracker.html')
+
+def contact(request):
+    if request.method == "POST":
+        cantact = Contact()
+        cantact.name = request.POST.get('name')
+        cantact.email = request.POST.get('email')
+        cantact.phone = request.POST.get('phone')
+        cantact.desc = request.POST.get('desc')
+        cantact.save()
+        return HttpResponse('<h1>Message Submitted Successfully</h1>')
     return render(request, 'shop/contact.html')
-    # return render(request, 'shop/tracker.html')

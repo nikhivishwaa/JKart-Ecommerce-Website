@@ -10,7 +10,7 @@
 
 {% block style %}
 <style>
-    .contact-form{
+    .contact-form {
         display: flex;
         margin: 10px auto;
         flex-direction: column;
@@ -18,24 +18,36 @@
         justify-content: center;
         align-items: stretch;
     }
+
+    .input-fields{
+        padding: 6px 25px;
+        border: 2px solid rgb(129 129 129);
+        font-size: 1rem;
+        border-radius: 6px;
+    }
+    .input-levels{
+        margin: 5px 0px;
+        margin-top: 10px;
+    }
+    
 </style>
 {% endblock %}
 
 
 {% block body %}
-<form action="/shop/conatct/" method="post" class="contact-form">
+<form action="/shop/contact/" method="post" class="contact-form">
     {% csrf_token %}
-    <label for="name">Enter Name</label>
-    <input type="text" id="name" name="name" placeholder="Your Name">
+    <label for="name" class="input-levels">Enter Name</label>
+    <input type="text" id="name" name="name" placeholder="Your Name" class="input-fields">
 
-    <label for="email">Enter Email Address</label>
-    <input type="email" id="email" name="email" placeholder="Your Email Address">
+    <label for="email" class="input-levels">Enter Email Address</label>
+    <input type="email" id="email" name="email" placeholder="Your Email Address" class="input-fields">
 
-    <label for="phone">Enter Phone No.</label>
-    <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
+    <label for="phone" class="input-levels">Enter Phone No.</label>
+    <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" class="input-fields">
 
-    <label for="desc">Enter Description</label>
-    <textarea id="desc" name="desc" placeholder="Write Your Message Here...." cols="30" rows="10"></textarea>
+    <label for="desc" class="input-levels">Enter Description</label>
+    <textarea id="desc" name="desc" placeholder="Write Your Message Here...." cols="30" rows="10" class="input-fields"></textarea>
 
     <div>
         <input type="submit" value="Submit" class="btn">

@@ -1,38 +1,43 @@
 {% extends 'shop/basic.html' %}
 
-
+{% load static %}
 {% block title %}Add Products in Jkart{% endblock %}
 
+{% block link %}
+<link rel="stylesheet" href="{% static 'shop/CSS/carousal.css' %}">
+<link rel="stylesheet" href="{% static 'shop/CSS/product-page.css' %}">
+{% endblock %}
 
 {% block body %}
 
-<div class="product-container">
-    <form action="" method="post">
-        {% csrf_token %}    
-        <label for="name">Product Name</label>
-        <input type="text" name="name" id="name" required>
 
-        <label for="desc">Description</label>
-        <textarea name="desc" id="desc" cols="30" rows="10" required></textarea>
+<form action="" method="post" class="product-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label class="input-levels" for="name">Product Name</label>
+    <input class="input-fields" type="text" name="name" id="name" required>
 
-        <label for="category">Category</label>
-        <input type="text" name="category" id="category" required>
+    <label class="input-levels" for="desc">Description</label>
+    <textarea name="desc" id="desc" cols="30" rows="10" required></textarea>
 
-        <label for="sub-category">Sub Category</label>
-        <input type="text" name="sub-category" id="sub-category" required>
+    <label class="input-levels" for="category">Category</label>
+    <input class="input-fields" type="text" name="category" id="category" required>
 
-        <label for="publish-date">Publish Date</label>
-        <input type="date" name="publish-date" id="publish-date" today>
+    <label class="input-levels" for="sub-category">Sub Category</label>
+    <input class="input-fields" type="text" name="sub-category" id="sub-category" required>
 
-        <label for="price">Price in &#8377</label>
-        <input type="number" name="price" id="price" required>
+    <label class="input-levels" for="publish-date">Publish Date</label>
+    <input class="input-fields" type="date" name="publish-date" id="publish-date" today>
 
-        <label for="image">Product Image</label>
-        <input type="image" name="image" id="image">
+    <label class="input-levels" for="price">Price in &#8377</label>
+    <input class="input-fields" type="number" name="price" id="price" required>
 
+    <label class="input-levels" for="image">Product Image</label>
+    <input type="file" name="image" accept="image/*" id="image">
+
+    <div>
         <input type="submit" value="Add Product" class="btn">
         <input type="reset" value="Cancel" class="btn">
-    </form>
-</div>
+    </div>
+</form>
 
 {% endblock %}
