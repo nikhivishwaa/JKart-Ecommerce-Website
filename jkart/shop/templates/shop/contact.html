@@ -1,0 +1,46 @@
+{% extends 'shop/basic.html' %}
+
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'shop/CSS/carousal.css' %}">
+{% endblock %}
+
+{% block style %}
+<style>
+    .contact-form{
+        display: flex;
+        margin: 10px auto;
+        flex-direction: column;
+        width: 75vw;
+        justify-content: center;
+        align-items: stretch;
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
+<form action="/shop/conatct/" method="post" class="contact-form">
+    {% csrf_token %}
+    <label for="name">Enter Name</label>
+    <input type="text" id="name" name="name" placeholder="Your Name">
+
+    <label for="email">Enter Email Address</label>
+    <input type="email" id="email" name="email" placeholder="Your Email Address">
+
+    <label for="phone">Enter Phone No.</label>
+    <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
+
+    <label for="desc">Enter Description</label>
+    <textarea id="desc" name="desc" placeholder="Write Your Message Here...." cols="30" rows="10"></textarea>
+
+    <div>
+        <input type="submit" value="Submit" class="btn">
+        <input type="reset" value="Reset" class="btn">
+    </div>
+</form>
+
+{% endblock %}

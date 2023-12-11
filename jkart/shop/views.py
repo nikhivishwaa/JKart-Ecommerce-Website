@@ -44,4 +44,5 @@ def search(request):
     return render(request, 'shop/search.html')
 
 def tracker(request):
-    return render(request, 'shop/tracker.html')
+    return render(request, 'shop/contact.html')
+    # return render(request, 'shop/tracker.html')

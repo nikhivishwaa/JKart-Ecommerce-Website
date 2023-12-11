@@ -144,11 +144,11 @@
             padding-left: 45px;
             font-size: 1.2rem;
         }
-        input:active {
+        /* input:active {
             padding: 10px 20px;
             border-radius: 12px;
             border: 1px inset red;
-        }
+        } */
 
         .outline-animation:focus {
             border-radius: 12px;
