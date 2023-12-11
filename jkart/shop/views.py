@@ -10,7 +10,7 @@ def index(request):
     products = Product.objects.all()
     n = len(products)
     no_of_slides = n//4 + ceil(n/4 - n//4)
-    params = {"ravi":"ravika","no_of_slides" : no_of_slides, "range": range(1, no_of_slides), "products": products}
+    params = {"no_of_slides" : no_of_slides, "range": range(1, no_of_slides), "products": products}
     return render(request, 'shop/home.html', params)
 
 def addProduct(request):
@@ -37,8 +37,11 @@ def prodView(request, id):
     print(product)
     return render(request, 'shop/product_page.html', {'product':product[0]})
 
-def cart(request):
-    return HttpResponse('shop cart page')
-
 def checkout(request):
-    return HttpResponse('shop checkout page')
+    return render(request, 'shop/checkout.html')
+
+def search(request):
+    return render(request, 'shop/search.html')
+
+def tracker(request):
+    return render(request, 'shop/tracker.html')
