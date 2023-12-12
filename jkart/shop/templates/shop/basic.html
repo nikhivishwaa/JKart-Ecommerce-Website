@@ -23,16 +23,22 @@
             <h1>JKart</h1>
         </div>
         <ul>
-            <li><a href="/shop">Dashboard</a></li>
-            <li><a href="/shop/offers">Offers</a></li>
-            <li><a href="/shop/track">Track</a></li>
-            <li><a href="/shop/search">Search</a></li>
-            <li><a href="/shop/cart">Cart</a></li>
+            <li ><a class="nav-btn" href="/shop">Dashboard</a></li>
+            <li ><a class="nav-btn" href="/shop/offers">Offers</a></li>
+            <li ><a class="nav-btn" href="/shop/track">Track</a></li>
+            <li ><a class="nav-btn" href="/shop/search">Search</a></li>
+            <li ><a class="nav-btn" href="/shop/contact">Contact Us</a></li>
+            <li><a class="nav-icon" href="/shop/cart">
+                    <div class="cart-btn">
+                        <img src="{%static 'shop/IMG/cart.png'%}" alt="shop.png" id="logo">
+                        <div class="count"></div>
+                    </div>
+                </a></li>
         </ul>
         <div id="nav-menu">
             <div class="cart-btn">
                 <img src="{%static 'shop/IMG/cart.png'%}" alt="shop.png" id="logo">
-                <div class="count">5{{count}}</div>
+                <div class="count"></div>
             </div>
             <div class="menu">
                 <hr>
@@ -54,5 +60,10 @@
 
     {% block script %}{% endblock %}
 </body>
+
+<script src="{% static 'shop/JS/cart.js'%}"></script>
+<script>
+    updateCart();
+</script>
 
 </html>
