@@ -29,8 +29,10 @@
                 <h3>{{j.product_name|truncatechars_html:'60'}} </h3>
                 <p>{{j.product_description|truncatechars_html:'40' }}</p>
             </div>
-            <div id="button-section">
-                <button class="btn cart" id="pr{{j.id}}">Add to Cart</button>
+            <div class="button-section">
+                <span class="addprod" id="atc{{j.id}}">
+                    <button class="btn cart" id="pr{{j.id}}">Add to Cart</button>
+                </span>
                 <a href="/shop/products/{{j.id}}">
                     <button class="btn" id="qv{{j.id}}">Quick View</button>
                 </a>
@@ -51,64 +53,5 @@
 
 {% block script %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
 
-    let active = 0;
-    let slides = document.querySelectorAll('.carousal ul');
-    let items = document.getElementsByClassName('items');
-
-    function nextSlide() {
-        if (active < slides.length - 1) {
-            slides[active].style.display = "none";
-            active++;
-            slides[active].style.display = "flex";
-        }
-        else {
-            slides[active].style.display = "none";
-            slides[0].style.display = "flex";
-            active = 0;
-        }
-    }
-    function prevSlide() {
-        if (active > 0) {
-            slides[active].style.display = "none";
-            active--;
-            slides[active].style.display = "flex";
-        }
-        else {
-            slides[active].style.display = "none";
-            slides[slides.length - 1].style.display = "flex";
-            active = slides.length - 1;
-        }
-    }
-    // add to cart logic
-
-    if (localStorage.getItem('cart') == null) {
-        var cart = {};
-        console.log("cart");
-    }
-    else {
-        cart = JSON.parse(localStorage.getItem('cart'));
-        console.log(cart);
-    }
-
-    // JQuery
-    $('.cart').click(function () {
-        console.log("clicked");
-        let additem = this.id.toString();
-        console.log(additem);
-
-        if (cart[additem] != undefined) {
-            cart[additem] += 1;
-        }
-        else {
-            cart[additem] = 1;
-        }
-        console.log(cart);
-        localStorage.setItem("cart", JSON.stringify(cart));
-    });
-
-    let foo = () => { localStorage.clear(); }
-
-</script>
 {% endblock %}
