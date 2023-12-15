@@ -30,7 +30,7 @@
                 <p>{{j.product_description|truncatechars_html:'40' }}</p>
             </div>
             <div class="button-section">
-                <span class="addprod" id="atc{{j.id}}">
+                <span class="divpr" id="divpr{{j.id}}">
                     <button class="btn cart" id="pr{{j.id}}">Add to Cart</button>
                 </span>
                 <a href="/shop/products/{{j.id}}">
@@ -52,6 +52,8 @@
 {% endblock %}
 
 {% block script %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+<script>
+    qtyButton();
+    updateCart();
+</script>
 {% endblock %}
