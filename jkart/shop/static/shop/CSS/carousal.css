@@ -1,28 +1,58 @@
+.carousal-heading {
+    font-size: 1.5rem;
+    margin: 15px 0px 0px 15px;
+    background-color: whitesmoke;
+    border: 2px solid whitesmoke;
+    box-shadow: 1px -1px 4px black;
+    border-bottom: none;
+    display: inline-block;
+    padding: 3px 22px;
+    border-radius: 15px 15px 0px 0px;
+}
+.slider{
+    background-color: whitesmoke;
+    border: 2px solid whitesmoke;
+    box-shadow: 1px -1px 4px black;
+    border-bottom: none;
+    padding: 15px 5px;
+    border-radius: 0px 15px 15px 15px;
+    margin: 0px 15px;
+    margin-bottom: 15px;
+}
+
 .carousal {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 88vw;
+    position: relative;
+    margin: 0px auto;
 }
 
-.carousal ul {
+.slide {
     display: flex;
     align-items: center;
     justify-content: space-around;
     display: none;
+    width: 100%;
 }
-.carousal ul li{
+
+.carousal ul li {
     list-style: none;
 }
+
 .shift-slide {
     cursor: pointer;
     padding: 8px;
 }
+
 .shift-slide:hover {
     color: var(--color);
     background-color: var(--bgcolor);
     border-radius: 5px;
 }
+
 .carousal ul:first-child {
     display: flex;
 }
@@ -34,9 +64,10 @@
     flex-direction: column;
     background-color: #519cae17;
     border-radius: 28px;
-    width: 350px;
+    width: 25%;
     aspect-ratio: 9/10;
     margin: 0px 8px;
+    position: relative;
 }
 
 .items img {
@@ -50,7 +81,7 @@
 }
 
 .caption h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-align: center;
 }
 
@@ -59,7 +90,8 @@
     text-align: center;
 }
 
-.button-section{
+.button-section {
     display: flex;
     align-items: center;
+    justify-content: center;
 }

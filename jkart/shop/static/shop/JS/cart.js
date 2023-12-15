@@ -1,32 +1,4 @@
 
-let active = 0;
-let slides = document.querySelectorAll('.carousal ul');
-let items = document.getElementsByClassName('items');
-
-function nextSlide() {
-    if (active < slides.length - 1) {
-        slides[active].style.display = "none";
-        active++;
-        slides[active].style.display = "flex";
-    }
-    else {
-        slides[active].style.display = "none";
-        slides[0].style.display = "flex";
-        active = 0;
-    }
-}
-function prevSlide() {
-    if (active > 0) {
-        slides[active].style.display = "none";
-        active--;
-        slides[active].style.display = "flex";
-    }
-    else {
-        slides[active].style.display = "none";
-        slides[slides.length - 1].style.display = "flex";
-        active = slides.length - 1;
-    }
-}
 // add to cart logic
 
 if (localStorage.getItem('cart') == null) {

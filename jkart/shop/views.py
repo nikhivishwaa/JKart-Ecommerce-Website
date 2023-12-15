@@ -6,11 +6,19 @@ from math import ceil
 def index(request):
     # if request.method == 'POST':
     #     print(request.POST.get('search'))
+    # products = Product.objects.all()
+    allprods = {}
+    prod_category = Product.objects.values('sub_category')
+    unique_categories = {item['sub_category'] for item in prod_category}
+    print(prod_category)
+    for _category_ in unique_categories:
+        products = Product.objects.filter(sub_category= _category_)
+        n = len(products)
+        no_of_slides = n//4 + ceil(n/4 - n//4)
+        params = {"no_of_slides" : no_of_slides, "range": range(1, no_of_slides), "products": products}
+        allprods[_category_] = params
 
-    products = Product.objects.all()
-    n = len(products)
-    no_of_slides = n//4 + ceil(n/4 - n//4)
-    params = {"no_of_slides" : no_of_slides, "range": range(1, no_of_slides), "products": products}
+    params = {'allprod': allprods}
     return render(request, 'shop/home.html', params)
 
 def addProduct(request):
@@ -21,8 +29,7 @@ def addProduct(request):
         pr1.category =  request.POST.get('category')
         pr1.sub_category =  request.POST.get('sub-category')
         pr1.publish_date =  request.POST.get('publish-date')
-        print(request.POST)
-        print(request.FILES)
+        # print(request.FILES)
         pr1.price =  request.POST.get('price')
         pr1.image =  request.FILES.get('image')
         pr1.save()
