@@ -1,0 +1,50 @@
+:root{
+    --lightbg: #fff5f7;
+}
+
+.container {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.prod-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    position: relative;
+}
+
+.prod-image img{
+    width: 75%;
+}
+
+.prod-detail {
+    width: 68%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    /* border: 2px solid grey; */
+}
+.options {
+    margin: 25px 2px;
+    display: flex;
+    align-items: center;
+}
+.description{
+    font-size: .9rem;
+}
+.price{
+    margin: 5px 1px;
+}
+
+.price > p{
+    font-size: 1.2rem;  
+    display: inline-block; 
+    margin: 5px 1px;
+}
+
+hr{
+    margin: 10px 1px;
+}

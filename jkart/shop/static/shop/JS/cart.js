@@ -42,18 +42,25 @@ $('.divpr').on('click', 'button.cart', function () {
 
     if (cart[additem] != undefined) {
         cart[additem] += 1;
-        qtyButton();
+        adjustButton(additem);
     }
     else {
         cart[additem] = 1;
-        qtyButton();
+        adjustButton(additem);
     }
     localStorage.setItem("cart", JSON.stringify(cart));
 });
+
+const adjustButton = (key) => {
+    if (cart[key] != undefined) {
+        var quantity_btn = `<button class='btn minus' id='minus${key}'>-</button><span id='qty${key}' class='value'>${cart[key]}</span><button class='btn plus' id='plus${key}'>+</button>`;
+        document.getElementById(`div${key}`).innerHTML = quantity_btn;
+        updateCart();
+    }
+}
 const qtyButton = () => {
     for (const key in cart) {
-        var quantity_btn = `<button class='btn minus' id='minus${key}'>-</button><span id='qty${key}'>${cart[key]}</span><button class='btn plus' id='plus${key}'>+</button>`;
-        document.getElementById(`div${key}`).innerHTML = quantity_btn;
+        adjustButton(key);
     }
 }
 
@@ -67,6 +74,7 @@ $('.divpr').on('click', 'button.minus', function () {
     }
     else document.getElementById(`qty${id}`).innerHTML = cart[id];
     localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
 });
 
 // if plus button is clicked
@@ -75,6 +83,7 @@ $('.divpr').on('click', 'button.plus', function () {
     cart[id] += 1;
     localStorage.setItem('cart', JSON.stringify(cart));
     document.getElementById(`qty${id}`).innerHTML = cart[id];
+    updateCart();
 });
 
 // Update total items count present in cart
@@ -83,8 +92,9 @@ const updateCart = () => {
     let _cart = Array.from(count);
     temp = JSON.parse(localStorage.getItem('cart'));
     let item = 0;
-    for (const key in temp) {
-        item += temp[key];
+    console.log(temp);
+    for (const key in cart) {
+        item += cart[key];
     }
     for (const i of _cart) {
         i.innerHTML = item.toString();
@@ -92,4 +102,4 @@ const updateCart = () => {
 }
 
 
-let foo = () => { localStorage.clear(); }
+let foo = () => { localStorage.removeItem('cart'); }

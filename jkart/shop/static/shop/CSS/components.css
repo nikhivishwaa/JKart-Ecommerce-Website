@@ -1,0 +1,45 @@
+:root {
+    --hoverbtncolor: rgba(0, 0, 0, 0.921);
+}
+
+.btn {
+    background-color: var(--bgcolor);
+    color: var(--color);
+    font-size: 1rem;
+    padding: 5px 23px;
+    border: 2px solid var(--bgcolor);
+    border-radius: 28px;
+    margin: 8px;
+}
+
+.btn:hover, .value:hover {
+    background-color: var(--hoverbtncolor);
+    border: 2px solid var(--hoverbtncolor);
+}
+
+/* Divpr contains (-|Quatity|+) buttons */
+.divpr {
+    margin: 0px;
+}
+
+.minus {
+    padding: 1.5px 11px 1.5px 16px;
+    font-size: 1.3rem;
+    border-radius: 28px 0px 0px 28px;
+    margin-right: 0px;
+}
+
+.plus {
+    padding: 1.5px 16px 1.5px 11px;
+    font-size: 1.3rem;
+    border-radius: 0px 28px 28px 0px;
+    margin-left: 0px;
+}
+
+.value {
+    font-size: 1.3rem;
+    background-color: var(--bgcolor);
+    color: var(--color);
+    padding: 1.5px 13px;
+    border: 2px solid var(--bgcolor);
+}

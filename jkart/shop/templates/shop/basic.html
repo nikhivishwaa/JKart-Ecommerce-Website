@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Ubuntu:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'shop/CSS/index.css' %}">
     <link rel="stylesheet" media="only screen and (max-width:690px)" href="{% static 'shop/CSS/tab_index.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/CSS/components.css' %}">
     <title>{% block title%}{% endblock %}</title>
     {% block link %}{% endblock %}
     {% block style %}{% endblock %}
@@ -23,11 +24,11 @@
             <h1>JKart</h1>
         </div>
         <ul>
-            <li ><a class="nav-btn" href="/shop">Dashboard</a></li>
-            <li ><a class="nav-btn" href="/shop/offers">Offers</a></li>
-            <li ><a class="nav-btn" href="/shop/track">Track</a></li>
-            <li ><a class="nav-btn" href="/shop/search">Search</a></li>
-            <li ><a class="nav-btn" href="/shop/contact">Contact Us</a></li>
+            <li><a class="nav-btn" href="/shop">Dashboard</a></li>
+            <li><a class="nav-btn" href="/shop/offers">Offers</a></li>
+            <li><a class="nav-btn" href="/shop/track">Track</a></li>
+            <li><a class="nav-btn" href="/shop/search">Search</a></li>
+            <li><a class="nav-btn" href="/shop/contact">Contact Us</a></li>
             <li><a class="nav-icon" href="/shop/cart">
                     <div class="cart-btn">
                         <img src="{%static 'shop/IMG/cart.png'%}" alt="shop.png" id="logo">
@@ -61,6 +62,10 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="{% static 'shop/JS/cart.js'%}"></script>
+<script>
+    updateCart();
+</script>
 
 {% block script %}{% endblock %}
+
 </html>

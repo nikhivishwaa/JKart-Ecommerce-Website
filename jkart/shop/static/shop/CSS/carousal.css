@@ -59,12 +59,7 @@
     text-align: center;
 }
 
-.btn{
-    background-color: var(--bgcolor);
-    color: var(--color);
-    font-size: 1rem;
-    padding: 5px 23px;
-    border: 2px solid var(--bgcolor);
-    border-radius: 28px;
-    margin: 8px;
+.button-section{
+    display: flex;
+    align-items: center;
 }

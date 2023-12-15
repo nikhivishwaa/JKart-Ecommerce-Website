@@ -5,27 +5,12 @@
 {% block title %} {{product.product_name}}{% endblock %}
 
 {% block link %}
-<link rel="stylesheet" href="{% static 'shop/CSS/carousal.css' %}">
+<link rel="stylesheet" href="{% static 'shop/CSS/product_page.css' %}">
 {% endblock %}
 
 {% block style %}
 <style>
-    .container {
-        display: flex;
-        justify-content: center;
-    }
 
-    .prod-detail{
-        display: flex;
-        margin-top: 20px;
-        flex-direction: column;
-    }
-    .prod-image img{
-        width: 70%;
-    }
-    .options{
-        margin-top: 25px;
-    }
 </style>
 
 {% endblock %}
@@ -38,14 +23,27 @@
     </div>
     <div class="prod-detail">
         <h1>{{product.product_name}}</h1>
-        <h2>{{product.product_description}}</h2>
-        <h2>Rs. {{product.price}}/-</h2>
+        <hr>
+        <h2 class="price">Price : 
+            <p>Rs. {{product.price}}/-</p>
+        </h2>
         <div class="options">
             <button class="btn">Buy Now</button>
-            <button class="btn">Add to Cart</button>
+            <span class="divpr" id="divpr{{product.id}}">
+                <button class="btn cart" id="pr{{product.id}}">Add to Cart</button>
+            </span>
             <button class="btn">Share</button>
         </div>
+        <h2>Description</h2>
+        <hr>
+        <h2 class="description">{{product.product_description}}</h2>
     </div>
 </div>
 
+{% endblock %}
+
+{% block script %}
+<script>
+    adjustButton('pr{{product.id}}');
+</script>
 {% endblock %}
