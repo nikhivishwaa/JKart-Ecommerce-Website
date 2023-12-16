@@ -62,9 +62,7 @@ $('.divpr').on('click', 'button.plus', function () {
 const updateCart = () => {
     let count = document.getElementsByClassName('count');
     let _cart = Array.from(count);
-    temp = JSON.parse(localStorage.getItem('cart'));
     let item = 0;
-    console.log(temp);
     for (const key in cart) {
         item += cart[key];
     }
