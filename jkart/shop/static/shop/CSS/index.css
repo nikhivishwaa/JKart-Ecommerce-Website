@@ -9,17 +9,26 @@
         :root {
             --color: white;
             --bgcolor: rgb(43, 43, 43);
+            --searchbtn: #00a52c;
         }
 
         /* Navigation Menu styling */
         #navbar {
-            font-size: 1.2rem;
             color: white;
-            position: relative;
+            position: sticky;
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100vw;
+            top: 0;
+            z-index: 3;
         }
-
+        
+        .links{
+            text-decoration: none;
+            color: var(--color);
+            cursor: pointer;
+        }
         #navbar::before {
             content: "";
             position: absolute;
@@ -41,9 +50,10 @@
             padding: 6px 20px;
             color: white;
         }
+
         .nav-icon {
             text-decoration: none;
-            padding: 6px 20px;
+            padding: 6px 5px;
         }
 
         .nav-btn:hover {
@@ -63,15 +73,15 @@
 
         .logo-section img {
             display: block;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 28px;
-            margin: 10px;
+            margin: 10px 4px;
         }
 
         .logo-section h1 {
             font-size: 1.6rem;
-            padding: 5px 12px;
+            padding: 0px 12px;
         }
 
         /* Navigation Menu button */
@@ -81,6 +91,13 @@
         }
 
 
+        /* right section for search bar and cart button */
+        .rightsection {
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            position: relative;
+        }
 
 
         /* Utilities for Nevigation menu (effects, buttons etc */
@@ -131,39 +148,51 @@
             align-self: flex-start;
         }
 
+        /* popover class content styling */
+        .prod{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2px;
+
+        }
+        .prod div{
+            margin: 0px 5px;
+        }
+
 
         /* search box */
         #search-bar {
-            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #search-bar input[type=search] {
-            padding: 10px 20px;
-            border-radius: 12px;
-            border: 1px inset red;
-            background: url("../Static/IMG/search_icon.png");
-            background-size: 25px;
+            padding: 5px 5px;
+            border-radius: 28px;
+            border: 1.5px solid var(--color);
+            background: url(/static/shop/IMG/search_icon.png);
+            background-size: 18px;
             background-repeat: no-repeat;
-            background-position: 8px 8px;
-            padding-left: 45px;
-            font-size: 1.2rem;
+            background-position: 12px 8px;
+            padding-left: 36px;
+            color: var(--color);
+            font-size: 1rem;
         }
-
-        /* input:active {
-            padding: 10px 20px;
-            border-radius: 12px;
-            border: 1px inset red;
-        } */
-
-        .outline-animation:focus {
-            border-radius: 12px;
-            border: 1px inset red;
-            animation: mymove .3s 1;
-            animation-fill-mode: forwards;
+        
+        #search-bar input[type=submit], .btn2 {
+            font-weight: bold;
+            margin: 0px 5px;
+            font-size: 1rem;
+            padding: 5px 18px;
+            border-radius: 28px;
+            border: 1.5px solid var(--searchbtn);
+            background-color: var(--searchbtn);
+            color: var(--color);
         }
-
-        @keyframes mymove {
-            100% {
-                outline: 2.1px solid #ff19193d;
-            }
+        #search-bar input[type=submit]:hover, .btn2:hover {
+            background-color: var(--color);
+            color: var(--bgcolor);
+            border: 1.5px solid var(--color);
         }

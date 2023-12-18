@@ -10,25 +10,20 @@
 
 
 {% block body %}
-<section>
-    <form action="" id="search-bar" method="post">
-        {% csrf_token %}
-        <input type="search" class="outline-animation" placeholder="Search..." name="search">
-        <input type="submit" value="Search" class="btn .cart">
-    </form>
-</section>
 {% for i, k in allprod.items %}
-<h1 class="carousal-heading">{{i}}</h1>
-<div class="slider">
-    <div class="carousal">
-        <ul class="slide car{{forloop.counter}}" id="car{{forloop.counter}}-sl0">
-            <li><a class="shift-slide prev" id="prev{{forloop.counter}}-sl0">❮</a></li>
-            {% for j in k.products|slice:"0:" %}
-            <li class="items">
+<h1 class="carousal-heading">Flash Sale on - {{i}}</h1>
+<div class="carousal">
+    <ul class="slide car{{forloop.counter}}" id="car{{forloop.counter}}-sl0">
+        <li class="change-slide"><a class="shift-slide prev" id="prev{{forloop.counter}}-sl0">❮</a></li>
+        {% for j in k.products|slice:"0:" %}
+        <li class="items">
+            <div class="image">
                 <img src="/media/{{j.image}}" alt="product 1">
-                <div class="caption">
-                    <h3>{{j.product_name|truncatechars_html:'60'}} </h3>
-                    <p>{{j.product_description|truncatechars_html:'40' }}</p>
+            </div>
+            <div class="caption">
+                <div class="detail">
+                    <h3 id="titlepr{{j.id}}" class="title">{{j.product_name|truncatechars_html:'35'}} </h3>
+                    <p class="desc">{{j.product_description|truncatechars_html:'85' }}</p>
                 </div>
                 <div class="button-section">
                     <span class="divpr" id="divpr{{j.id}}">
@@ -38,19 +33,21 @@
                         <button class="btn" id="qv{{j.id}}">Quick View</button>
                     </a>
                 </div>
-            </li>
-            {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
-            <li><a id="next{{forloop.parentloop.counter}}-sl{{forloop.counter}}" class="shift-slide next">❯</a></li>
-        </ul>
-        <ul class="slide car{{forloop.parentloop.counter}}"
-            id="car{{forloop.parentloop.counter}}-sl{{forloop.counter}}">
-            <li><a id="prev{{forloop.parentloop.counter}}-sl{{forloop.counter}}" class="shift-slide prev">❮</a></li>
+            </div>
+        </li>
+        {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+        <li class="change-slide"><a id="next{{forloop.parentloop.counter}}-sl{{forloop.counter}}"
+                class="shift-slide next">❯</a></li>
+    </ul>
+    <ul class="slide car{{forloop.parentloop.counter}}" id="car{{forloop.parentloop.counter}}-sl{{forloop.counter}}">
+        <li class="change-slide"><a id="prev{{forloop.parentloop.counter}}-sl{{forloop.counter}}"
+                class="shift-slide prev">❮</a></li>
 
-            {% endif %}
-            {% endfor %}
-            <li><a class="shift-slide next" id="next{{forloop.counter}}-sl{{k.products|length}}">❯</a></li>
-        </ul>
-    </div>
+        {% endif %}
+        {% endfor %}
+        <li class="change-slide"><a class="shift-slide next" id="next{{forloop.counter}}-sl{{k.products|length}}">❯</a>
+        </li>
+    </ul>
 </div>
 {% endfor %}
 {% endblock %}

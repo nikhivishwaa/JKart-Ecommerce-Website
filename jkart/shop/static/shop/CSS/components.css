@@ -1,18 +1,20 @@
 :root {
     --hoverbtncolor: rgba(0, 0, 0, 0.921);
+    --tooltipcolor: #7b7b7b;
 }
 
 .btn {
     background-color: var(--bgcolor);
     color: var(--color);
     font-size: 1rem;
-    padding: 5px 23px;
+    padding: 1.5px 11px;
     border: 2px solid var(--bgcolor);
     border-radius: 28px;
     margin: 8px;
 }
 
-.btn:hover, .value:hover {
+.btn:hover,
+.value:hover {
     background-color: var(--hoverbtncolor);
     border: 2px solid var(--hoverbtncolor);
 }
@@ -23,23 +25,64 @@
 }
 
 .minus {
-    padding: 1.5px 11px 1.5px 16px;
-    font-size: 1.3rem;
+    padding: 1.5px 6px 1.5px 11px;
+    font-size: 1rem;
     border-radius: 28px 0px 0px 28px;
     margin-right: 0px;
 }
 
 .plus {
-    padding: 1.5px 16px 1.5px 11px;
-    font-size: 1.3rem;
+    padding: 1.5px 11px 1.5px 6px;
+    font-size: 1rem;
     border-radius: 0px 28px 28px 0px;
     margin-left: 0px;
 }
 
 .value {
-    font-size: 1.3rem;
+    font-size: 1rem;
     background-color: var(--bgcolor);
     color: var(--color);
-    padding: 1.5px 13px;
+    padding: 1.5px 5px;
     border: 2px solid var(--bgcolor);
+}
+
+/* tool tip */
+
+.tooltip {
+    position: relative;
+    left: -25%;
+}
+
+.popover {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid #66fffbb3;
+    border-radius: 12px;
+    margin: 0px 6px;
+    width: 235px;
+    background-color: var(--tooltipcolor);
+    top: 138%;
+    left: 35%;
+    transform: translateX(-50%);
+    color: var(--color);
+    opacity: 0;
+}
+
+.popover::before {
+    content: "";
+    position: absolute;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 18px solid var(--tooltipcolor);
+    left: 41%;
+    top: -10px
+}
+
+.tooltip:hover .popover{
+    display: flex;
+    opacity: 1;
 }

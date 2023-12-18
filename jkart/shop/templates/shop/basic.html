@@ -19,23 +19,42 @@
 
 <body>
     <nav id="navbar">
-        <div class="logo-section">
-            <img src="{%static 'shop/IMG/Jkart.png'%}" alt="shop.png" id="logo">
-            <h1>JKart</h1>
-        </div>
+        <a href="/shop" class="links">
+            <div class="logo-section">
+                <img src="{%static 'shop/IMG/Jkart.png'%}" alt="shop.png" id="logo">
+                <h1>JKart</h1>
+            </div>
+        </a>
         <ul>
             <li><a class="nav-btn" href="/shop">Dashboard</a></li>
             <li><a class="nav-btn" href="/shop/offers">Offers</a></li>
             <li><a class="nav-btn" href="/shop/track">Track</a></li>
-            <li><a class="nav-btn" href="/shop/search">Search</a></li>
             <li><a class="nav-btn" href="/shop/contact">Contact Us</a></li>
-            <li><a class="nav-icon" href="/shop/cart">
+        </ul>
+        <div class="rightsection">
+
+            <section>
+                <form action="" id="search-bar" method="post">
+                    {% csrf_token %}
+                    <input type="search" class="outline-animation" placeholder="Search..." name="search">
+                    <input type="submit" value="Search" class="btn .cart">
+                </form>
+            </section>
+            <a class="nav-icon">
+                <div class="tooltip">
                     <div class="cart-btn">
                         <img src="{%static 'shop/IMG/cart.png'%}" alt="shop.png" id="logo">
                         <div class="count"></div>
                     </div>
-                </a></li>
-        </ul>
+                    <div id="popover" class="popover">
+                        <div class="prod">
+                            <span>Cart is Empty Please add Items</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
         <div id="nav-menu">
             <div class="cart-btn">
                 <img src="{%static 'shop/IMG/cart.png'%}" alt="shop.png" id="logo">

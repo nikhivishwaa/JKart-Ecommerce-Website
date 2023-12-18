@@ -1,10 +1,71 @@
 {% extends 'shop/basic.html' %}
+{% load static %}
 
+{% block title %}Checkout Page | Jkart{% endblock %}
+{% block style %}
+<style>
+    .container {
+        display: flex;
+        width: 80vw;
+        position: relative;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        margin: 20px auto;
+    }
 
-{% block title %}Checkout{% endblock %}
+    .review, .place-order{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 20px;
+    }
 
+    .list-product {
+        display: flex;
+        width: 100%;
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid var(--bgcolor);
+    }
 
-{% block body %}
-<h1>this is checkout page</h1>
+    .prod-name {
+        margin: 12px 25px;
+    }
+
+    .divpr {
+        margin: 12px 25px;
+    }
+
+    .steps {
+        width: 100%;
+        font-size: 1.6rem;
+        margin: 12px;
+        cursor: pointer;
+    }
+</style>
 {% endblock %}
 
+{% block body %}
+<div class="container">
+    <div id="review" class="review">
+        <h1 class="steps">Step 1: Review Your Selection</h1>
+    </div>
+    <div class="place-order">
+        <h1 class="steps">Step 2: Fill The Reciepiant Details</h1>
+        <form action="/shop/checkout" method="post"></form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'shop/JS/checkout.js'%}"></script>
+<script>
+    fillCheckoutPage();
+</script>
+{% endblock %}

@@ -1,13 +1,9 @@
 .carousal-heading {
     font-size: 1.5rem;
-    margin: 15px 0px 0px 15px;
-    background-color: whitesmoke;
-    border: 2px solid whitesmoke;
-    box-shadow: 1px -1px 4px black;
-    border-bottom: none;
-    display: inline-block;
+    margin: 15px 5vw;
+    display: block;
     padding: 3px 22px;
-    border-radius: 15px 15px 0px 0px;
+    margin-top: 40px;
 }
 .slider{
     background-color: whitesmoke;
@@ -25,7 +21,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 88vw;
+    width: 96%;
     position: relative;
     margin: 0px auto;
 }
@@ -42,9 +38,20 @@
     list-style: none;
 }
 
+.change-slide{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #519cae17; */
+    border-radius: 28px;
+    width: 5%;
+    aspect-ratio: 1/1;
+    margin: 0px 8px;
+}
 .shift-slide {
     cursor: pointer;
     padding: 8px;
+    font-size: 2rem;
 }
 
 .shift-slide:hover {
@@ -62,32 +69,58 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #519cae17;
-    border-radius: 28px;
-    width: 25%;
-    aspect-ratio: 9/10;
-    margin: 0px 8px;
+    border-radius: 15px;
+    width: 20%;
+    aspect-ratio: 5/6;
+    margin: 0px 5px;
     position: relative;
+    border: 1px solid rgb(141, 141, 141);
 }
 
-.items img {
+/*  image area of card */
+.image {
+    border-radius: 15px 15px 0px 0px;
+    position: relative;
+    background-color: #519cae17;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 58%;
+    width: 100%;
+    
+}
+.image img {
     display: block;
     margin: 5px auto;
-    height: 58%;
+    object-fit: cover;
+    height: 90%;
 }
 
-.caption {
-    margin: 15px 10px;
+/*  caption area of card */
+.caption{
+    border-radius: 0px 0px 15px 15px;
+    position: relative;
+    background-color: #ae8c5117;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 42%;
+    width: 100%;
+}
+.detail {
+    margin: 0px 10px;
 }
 
-.caption h3 {
-    font-size: 1rem;
-    text-align: center;
-}
-
-.caption p {
+.title {
     font-size: .9rem;
     text-align: center;
+}
+
+.desc {
+    font-size: .8rem;
+    text-align: justify;
+
 }
 
 .button-section {
