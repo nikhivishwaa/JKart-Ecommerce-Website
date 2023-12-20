@@ -25,4 +25,21 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name + " | Recieved on: " +str(self.msg_date)
-    
+
+class Order(models.Model):
+    order_id = models.AutoField(primary_key=True)
+    order_json = models.CharField(max_length=5000)
+    email = models.EmailField()
+    phone = models.PositiveBigIntegerField()
+    address = models.CharField(max_length=300)
+    name = models.CharField(max_length=100)
+    state = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    zipcode = models.IntegerField()
+    status = models.CharField(max_length=15)
+    order_date = models.DateTimeField(auto_now=True)
+    last_update = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return "#" + str(self.order_id) + " " + self.status + " " + self.order_json[1:30]
+

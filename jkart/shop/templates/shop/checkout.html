@@ -2,64 +2,72 @@
 {% load static %}
 
 {% block title %}Checkout Page | Jkart{% endblock %}
-{% block style %}
-<style>
-    .container {
-        display: flex;
-        width: 80vw;
-        position: relative;
-        justify-content: center;
-        align-items: flex-start;
-        flex-direction: column;
-        margin: 20px auto;
-    }
-
-    .review, .place-order{
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-top: 20px;
-    }
-
-    .list-product {
-        display: flex;
-        width: 100%;
-        position: relative;
-        justify-content: space-between;
-        align-items: center;
-        border: 1px solid var(--bgcolor);
-    }
-
-    .prod-name {
-        margin: 12px 25px;
-    }
-
-    .divpr {
-        margin: 12px 25px;
-    }
-
-    .steps {
-        width: 100%;
-        font-size: 1.6rem;
-        margin: 12px;
-        cursor: pointer;
-    }
-</style>
+{% block link %}
+<link rel="stylesheet" href="{% static 'shop/CSS/checkout.css' %}">
 {% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container" id="place-order">
     <div id="review" class="review">
         <h1 class="steps">Step 1: Review Your Selection</h1>
     </div>
     <div class="place-order">
         <h1 class="steps">Step 2: Fill The Reciepiant Details</h1>
-        <form action="/shop/checkout" method="post"></form>
-
+        <form action="/shop/checkout/" method="post" class="order-form">
+            {% csrf_token %}
+            <input type="hidden" name="order_json" id="order_json">
+            <div class="row">
+                <div class="label-input">
+                    <label for="name">Full Name</label>
+                    <input type="text" name="name" id="name" placeholder="Your Good Name" required>
+                </div>
+                <div class="label-input">
+                    <label for="email">Email Address</label>
+                    <input type="email" name="email" id="email" placeholder="Email Address" required>
+                </div>
+            </div>
+            <div class="label-input">
+                <label for="address1">Address Line 1</label>
+                <input type="text" name="address1" id="address1" placeholder="House No., Apartment, Landmark" required>
+            </div>
+            <div class="label-input">
+                <label for="address2">Address Line 2</label>
+                <input type="text" name="address2" id="address2" placeholder="Colony, Village, Area, Road Name"
+                    required>
+            </div>
+            <div class="row">
+                <div class="label-input">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city" placeholder="City" required>
+                </div>
+                <div class="label-input">
+                    <label for="state">State</label>
+                    <input type="text" name="state" id="state" placeholder="State" required>
+                </div>
+                <div class="label-input">
+                    <label for="zipcode">Zip Code</label>
+                    <input type="text" name="zipcode" id="zipcode" placeholder="Zipcode" required>
+                </div>
+                <div class="label-input">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" name="phone" id="phone" placeholder="phone" required>
+                </div>
+            </div>
+            <div class="submit-button">
+                <input type="submit" value="Place Order">
+            </div>
+        </form>
+        
     </div>
 </div>
+{% if confirmed %}
+<div class="display-status">
+    <div class="alert-box">
+        <h3>Your Order is {{status}}</h3>
+        <h3>Order id : {{order_id}}</h3>
+    </div>
+</div>
+{% endif %}
 
 {% endblock %}
 
@@ -67,5 +75,14 @@
 <script src="{% static 'shop/JS/checkout.js'%}"></script>
 <script>
     fillCheckoutPage();
+    $("#order_json").val(JSON.stringify(cart))
+    {% if confirmed %}
+    $("#place-order").hide();
+    // alert("{{order_id}}")
+    cart = {}
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updatePopover();
+    updateCart();
+    {% endif %}
 </script>
 {% endblock %}
