@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Product, Contact, Order
+from .models import Product, Contact, Order, OrderUpdate
 from math import ceil
 
 def index(request):
@@ -58,6 +58,11 @@ def checkout(request):
         order.zipcode = request.POST.get("zipcode", "")
         order.status = "confirmed"
         order.save()
+
+        up = OrderUpdate()
+        up.order_id = order.order_id
+        up.update = order.status
+        up.time_stamp = order.order_date
 
         order_confirmation = {"confirmed": True, "status": order.status, "order_id": order.order_id}
         return render(request, 'shop/checkout.html', order_confirmation)

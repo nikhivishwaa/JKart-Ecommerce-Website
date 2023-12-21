@@ -14,6 +14,7 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
     
+    
 class Contact(models.Model):
     msg_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30, default="")
@@ -25,6 +26,7 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name + " | Recieved on: " +str(self.msg_date)
+
 
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
@@ -42,4 +44,14 @@ class Order(models.Model):
 
     def __str__(self) -> str:
         return "#" + str(self.order_id) + " " + self.status + " " + self.order_json[1:30]
+
+
+class OrderUpdate(models.Model):
+    id = models.AutoField(primary_key=True)
+    update = models.CharField(max_length=100)
+    order_id = models.IntegerField()
+    time_stamp = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return "#" + str(self.order_id) + " is " + self.status[:12] + "..."
 
