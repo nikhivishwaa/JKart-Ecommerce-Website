@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'shop/CSS/index.css' %}">
+    <link rel="stylesheet" media="only screen and (max-width:690px)" href="{% static 'shop/CSS/tab_index.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/CSS/components.css' %}">
+    <title>Jkart Project Page</title>
+</head>
+
+<body>
+    <nav id="navbar">
+        <a href="/shop" class="links">
+            <div class="logo-section">
+                <img src="{%static 'shop/IMG/Jkart.png'%}" alt="shop.png" id="logo">
+                <h1>JKart</h1>
+            </div>
+        </a>
+        <ul>
+            <li><a class="nav-btn" href="/shop">Dashboard</a></li>
+            <li><a class="nav-btn" href="/blog">Offers</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
