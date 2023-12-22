@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Product, Contact, Order, OrderUpdate
 from math import ceil
+import json
 
 def index(request):
     # if request.method == 'POST':
@@ -62,7 +63,7 @@ def checkout(request):
         up = OrderUpdate()
         up.order_id = order.order_id
         up.update = order.status
-        up.save()
+        up.time_stamp = order.order_date
 
         order_confirmation = {"confirmed": True, "status": order.status, "order_id": order.order_id}
         return render(request, 'shop/checkout.html', order_confirmation)
@@ -72,6 +73,23 @@ def search(request):
     return render(request, 'shop/search.html')
 
 def tracker(request):
+    if request.method == "POST":
+        order_id = request.POST.get("order_id")
+        email = request.POST.get("email")
+        isexists = Order.objects.filter(email=email, order_id=order_id)
+        try:
+            if len(isexists):
+                updates = []
+                update = OrderUpdate.objects.filter(order_id = order_id)
+                for i in update:
+                    updates.append({"update":i.update, "time_stamp":i.time_stamp})
+                print("before json",updates)
+                updates = json.dump(updates)
+                return HttpResponse(updates)
+            else:
+                raise ValueError
+        except Exception as e:
+            return HttpResponse({})
     return render(request, 'shop/tracker.html')
 
 def contact(request):
