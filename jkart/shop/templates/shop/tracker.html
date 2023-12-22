@@ -1,10 +1,53 @@
 {% extends 'shop/basic.html' %}
+{% load static %}
 
-
-{% block title %}Trak Your Order Here{% endblock %}
-
-
-{% block body %}
-<h1>i am your traker page</h1>
+{% block title %}Checkout Page | Jkart{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'shop/CSS/checkout.css' %}">
 {% endblock %}
 
+{% block body %}
+<div class="container" id="track-order">
+    <div class="place-order">
+        <h1 class="steps">Track Your Order Here</h1>
+        <form action="/shop/track/" method="post" class="order-form">
+            {% csrf_token %}
+            <input type="hidden" name="order_json" id="order_json">
+            <div class="row">
+                <div class="label-input">
+                    <label for="order_id">Order Id</label>
+                    <input type="text" name="order_id" id="order_id" placeholder="Your Good Name" required>
+                </div>
+                <div class="label-input">
+                    <label for="email">Email Address</label>
+                    <input type="email" name="email" id="email" placeholder="Email Address" required>
+                </div>
+            </div>
+    </div>
+    <div class="submit-button">
+        <input type="submit" value="Track Order">
+    </div>
+    </form>
+
+</div>
+<div id="review" class="review">
+    <h1 class="steps">Step 1: Review Your Selection</h1>
+</div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    $("track-order").submit(
+    $.ajax(function () {
+        let data = {
+            "order_id": $("input[name=order_id]").val(),
+            "email": $("input[name=email]").val(),
+            "csrfmiddlewaretoken": $("input[name=csrfmiddlewaretoken]").val()
+        }
+
+    }
+    ));
+</script>
+{% endblock %}
