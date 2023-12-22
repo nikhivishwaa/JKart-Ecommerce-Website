@@ -53,5 +53,5 @@ class OrderUpdate(models.Model):
     time_stamp = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return "#" + str(self.order_id) + " is " + self.status[:12] + "..."
+        return "#" + str(self.order_id) + " is " + self.update[0:12] + "..."
 
