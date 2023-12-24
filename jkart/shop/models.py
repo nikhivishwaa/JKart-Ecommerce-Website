@@ -48,10 +48,10 @@ class Order(models.Model):
 
 class OrderUpdate(models.Model):
     id = models.AutoField(primary_key=True)
-    update = models.CharField(max_length=100)
+    update_desc = models.CharField(max_length=100)
     order_id = models.IntegerField()
     time_stamp = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return "#" + str(self.order_id) + " is " + self.update[0:12] + "..."
+        return "#" + str(self.order_id) + " is " + self.update_desc[0:12] + " ..."
 

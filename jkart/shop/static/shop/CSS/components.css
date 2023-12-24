@@ -82,7 +82,39 @@
     top: -10px
 }
 
-.tooltip:hover .popover{
+.tooltip:hover .popover {
     display: flex;
     opacity: 1;
+}
+
+.yellow-btn {
+    background-color: yellow;
+    padding: 5px 12px;
+    border-radius: 5px;
+    border: 2px solid yellow;
+    box-shadow: 1px 1px 5px -1px;
+    color: black;
+    letter-spacing: .5px;
+    font-weight: bold;
+    font-size: .9rem;
+}
+
+.yellow-btn:active {
+    animation-name: btnclk;
+    animation-timing-function: ease;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-delay: .2s;
+    animation-iteration-count: 1;
+    transition: outline .2s ease;
+}
+
+@keyframes btnclk {
+    from{
+        outline: none;
+    }
+    from{
+        outline: 2px solid rgba(0, 231, 252, 0.368);
+    }
+    
 }

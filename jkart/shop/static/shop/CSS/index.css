@@ -5,6 +5,11 @@
             font-family: 'Nunito', 'Ubuntu', 'sans-serif';
         }
 
+        body{
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
         /* Root Variables */
         :root {
             --color: white;

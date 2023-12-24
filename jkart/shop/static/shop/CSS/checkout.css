@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    width: 80vw;
+    width: 75vw;
     position: relative;
     justify-content: center;
     align-items: flex-start;
@@ -48,7 +48,7 @@
     display: flex;
     margin: 10px auto;
     flex-direction: column;
-    width: 75vw;
+    width: 96%;
     justify-content: center;
     align-items: stretch;
     position: relative;
@@ -69,12 +69,6 @@
     justify-content: center;
     align-items: stretch;
 }
-.submit-button {
-    display: flex;
-    margin: 4px 0px;
-    justify-content: start;
-    align-items: center;
-}
 
 .label-input label {
     margin: 5px 0px;
@@ -87,6 +81,12 @@
     border: 2px solid rgb(129 129 129);
     font-size: 1rem;
     border-radius: 6px;
+}
+
+.submit-button{
+    display: flex;
+    margin: 15px 0px;
+    justify-content: left;
 }
 
 

@@ -11,7 +11,6 @@ def index(request):
     allprods = {}
     prod_category = Product.objects.values('sub_category')
     unique_categories = {item['sub_category'] for item in prod_category}
-    print(prod_category)
     for _category_ in unique_categories:
         products = Product.objects.filter(sub_category= _category_)
         n = len(products)
@@ -21,6 +20,7 @@ def index(request):
 
     params = {'allprod': allprods}
     return render(request, 'shop/home.html', params)
+
 
 def addProduct(request):
     if request.method == 'POST':
@@ -38,13 +38,15 @@ def addProduct(request):
     params = {"message":"Product added Successfully"}
     return render(request, 'shop/addproducts.html', params)
 
+
 def offers(request):
     return render(request, 'shop/offers.html')
 
+
 def prodView(request, id):
     product = Product.objects.filter(id=id)
-    print(product)
     return render(request, 'shop/product_page.html', {'product':product[0]})
+
 
 def checkout(request):
     if request.method == "POST":
@@ -62,15 +64,17 @@ def checkout(request):
 
         up = OrderUpdate()
         up.order_id = order.order_id
-        up.update = order.status
+        up.update_desc = order.status
         up.time_stamp = order.order_date
 
         order_confirmation = {"confirmed": True, "status": order.status, "order_id": order.order_id}
         return render(request, 'shop/checkout.html', order_confirmation)
     return render(request, 'shop/checkout.html')
 
+
 def search(request):
     return render(request, 'shop/search.html')
+
 
 def tracker(request):
     if request.method == "POST":
@@ -82,15 +86,15 @@ def tracker(request):
                 updates = []
                 update = OrderUpdate.objects.filter(order_id = order_id)
                 for i in update:
-                    updates.append({"update":i.update, "time_stamp":i.time_stamp})
-                print("before json",updates)
-                updates = json.dump(updates)
-                return HttpResponse(updates)
+                    updates.append({"update":i.update_desc, "time_stamp":i.time_stamp})
+                response = json.dumps(updates, default=str)
+                return HttpResponse(response)
             else:
-                raise ValueError
+                return HttpResponse("{}")
         except Exception as e:
-            return HttpResponse({})
+            return HttpResponse("{}")
     return render(request, 'shop/tracker.html')
+
 
 def contact(request):
     if request.method == "POST":

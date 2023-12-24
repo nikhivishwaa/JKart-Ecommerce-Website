@@ -23,31 +23,53 @@
                     <input type="email" name="email" id="email" placeholder="Email Address" required>
                 </div>
             </div>
+            <div class="submit-button">
+                <input type="submit" value="Track Order" class="yellow-btn">
+            </div>
+        </form>
     </div>
-    <div class="submit-button">
-        <input type="submit" value="Track Order">
-    </div>
-    </form>
 
-</div>
-<div id="review" class="review">
-    <h1 class="steps">Step 1: Review Your Selection</h1>
-</div>
+    <div id="review" class="review">
+        <h1 class="steps">Step 1: Review Your Selection</h1>
+    </div>
 </div>
 
 {% endblock %}
 
 {% block script %}
 <script>
-    $("track-order").submit(
-    $.ajax(function () {
+    $("#track-order").submit(function (event) {
         let data = {
             "order_id": $("input[name=order_id]").val(),
             "email": $("input[name=email]").val(),
             "csrfmiddlewaretoken": $("input[name=csrfmiddlewaretoken]").val()
         }
 
+        $.ajax(
+            {
+                type: 'POST',
+                url: '/shop/track/',
+                data: data,
+                encode: true
+            }).done(
+                function (data) {
+                    if (data == "{}") {
+                        console.log("empty");
+                    }
+                    else {
+                        let update_list = JSON.parse(data);
+                        console.log(update_list);
+                        for (const i of update_list) {
+                            let x = update_list[i];
+
+                        }
+
+                    }
+                }
+            );
+        event.preventDefault();
+
     }
-    ));
+    );
 </script>
 {% endblock %}
