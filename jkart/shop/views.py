@@ -66,7 +66,7 @@ def checkout(request):
         up.order_id = order.order_id
         up.update_desc = order.status
         up.time_stamp = order.order_date
-
+        up.save()
         order_confirmation = {"confirmed": True, "status": order.status, "order_id": order.order_id}
         return render(request, 'shop/checkout.html', order_confirmation)
     return render(request, 'shop/checkout.html')
