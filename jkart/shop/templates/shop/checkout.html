@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="submit-button">
-                <input type="submit" value="Place Order" class="yellow-btn">
+                <input type="submit" value="Place Order" class="yellow-button">
             </div>
         </form>
 
@@ -81,7 +81,6 @@
     $("#order_json").val(JSON.stringify(cart))
     {% if confirmed %}
     $("#place-order").hide();
-    // alert("{{order_id}}")
     cart = {}
     localStorage.setItem("cart", JSON.stringify(cart));
     updatePopover();

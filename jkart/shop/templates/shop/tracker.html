@@ -24,11 +24,14 @@
                 </div>
             </div>
             <div class="submit-button">
-                <input type="submit" value="Track Order" class="yellow-btn">
+                <input type="submit" value="Track Order" class="yellow-button">
             </div>
         </form>
     </div>
     <div id="track-details" class="review">
+
+    </div>
+    <div id="review-details" class="review">
 
     </div>
 </div>
@@ -58,18 +61,27 @@
                         document.getElementById('track-details').innerHTML = updates;
                     }
                     else {
-                        let update_list = JSON.parse(data);
+                        let update_list = JSON.parse(data)[0];
                         console.log(update_list);
                         let updates = `<h1 class="steps">Your Order Status: </h1>`;
                         document.getElementById('track-details').innerHTML = updates;
                         for (const i of update_list) {
                             let time = getUpdateTime(i.time_stamp);
                             let message = `<div class="list-product">
-            <div class="prod-name">${i.update}</div>
-            <span class="time">${time}</span>
-        </div>`
+                                <div class="prod-name">${i.update}</div>
+                                <span class="time">${time}</span>
+                                </div>`
                             document.getElementById('track-details').innerHTML += message;
-
+                        }
+                        let prod_list = JSON.parse(JSON.parse(data)[1]);
+                        let products = `<h1 class="steps">Your Order Details: </h1>`;
+                        document.getElementById('review-details').innerHTML = products;
+                        for (const key in prod_list) {
+                            let product = `<div class="list-product" id="${key}">
+            <div class="prod-name">${prod_list[key][1]}</div>
+            <span class="time">${prod_list[key][0]}</span>
+        </div>`;
+                            document.getElementById('review-details').innerHTML += product;
                         }
 
                     }

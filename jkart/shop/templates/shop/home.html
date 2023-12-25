@@ -24,6 +24,7 @@
                 <div class="detail">
                     <h3 id="titlepr{{j.id}}" class="title">{{j.product_name|truncatechars_html:'35'}} </h3>
                     <p class="desc">{{j.product_description|truncatechars_html:'85' }}</p>
+                    <div>Price: RS. <span id="pricepr{{j.id}}">{{j.price }}</span>/-</div>
                 </div>
                 <div class="button-section">
                     <span class="divpr" id="divpr{{j.id}}">

@@ -22,10 +22,10 @@
         <img src="/media/{{product.image}}" alt="{{product.product_name}}">
     </div>
     <div class="prod-detail">
-        <h1>{{product.product_name}}</h1>
+        <h1 id="titlepr{{product.id}}">{{product.product_name}}</h1>
         <hr>
         <h2 class="price">Price : 
-            <p>Rs. {{product.price}}/-</p>
+            <p>Rs. <span id="pricepr{{product.id}}">{{product.price}}</span>/-</p>
         </h2>
         <div class="options">
             <button class="btn">Buy Now</button>

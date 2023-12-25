@@ -44,6 +44,8 @@
     color: var(--color);
     padding: 1.5px 5px;
     border: 2px solid var(--bgcolor);
+    z-index: 1;
+    position: relative;
 }
 
 /* tool tip */
@@ -87,7 +89,7 @@
     opacity: 1;
 }
 
-.yellow-btn {
+.yellow-button {
     background-color: yellow;
     padding: 5px 12px;
     border-radius: 5px;
@@ -99,7 +101,7 @@
     font-size: .9rem;
 }
 
-.yellow-btn:active {
+.yellow-button:active {
     animation-name: btnclk;
     animation-timing-function: ease;
     animation-duration: 1s;
@@ -113,7 +115,7 @@
     from{
         outline: none;
     }
-    from{
+    to{
         outline: 2px solid rgba(0, 231, 252, 0.368);
     }
     

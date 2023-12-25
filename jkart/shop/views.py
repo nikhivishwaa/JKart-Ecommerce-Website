@@ -87,7 +87,7 @@ def tracker(request):
                 update = OrderUpdate.objects.filter(order_id = order_id)
                 for i in update:
                     updates.append({"update":i.update_desc, "time_stamp":i.time_stamp})
-                response = json.dumps(updates, default=str)
+                response = json.dumps([updates, isexists[0].order_json], default=str)
                 return HttpResponse(response)
             else:
                 return HttpResponse("{}")
