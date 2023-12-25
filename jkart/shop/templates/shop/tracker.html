@@ -28,9 +28,8 @@
             </div>
         </form>
     </div>
+    <div id="track-details" class="review">
 
-    <div id="review" class="review">
-        <h1 class="steps">Your Order Status: as Follows</h1>
     </div>
 </div>
 
@@ -55,12 +54,21 @@
                 function (data) {
                     if (data == "{}") {
                         console.log("empty");
+                        let updates = `<h1 class="steps">No Order Found Please Review your Details</h1>`;
+                        document.getElementById('track-details').innerHTML = updates;
                     }
                     else {
                         let update_list = JSON.parse(data);
                         console.log(update_list);
+                        let updates = `<h1 class="steps">Your Order Status: </h1>`;
+                        document.getElementById('track-details').innerHTML = updates;
                         for (const i of update_list) {
-                            let x = update_list[i];
+                            let time = getUpdateTime(i.time_stamp);
+                            let message = `<div class="list-product">
+            <div class="prod-name">${i.update}</div>
+            <span class="time">${time}</span>
+        </div>`
+                            document.getElementById('track-details').innerHTML += message;
 
                         }
 
@@ -71,5 +79,13 @@
 
     }
     );
+    function getUpdateTime(time) {
+        time = new Date(time);
+        let d = time.toDateString().slice(0, 3);
+        let h = time.toLocaleTimeString();
+        h = h.slice(0, h.lastIndexOf(":")) + h.slice(h.indexOf(" "),);
+        return d + " " + h;
+    }
+
 </script>
 {% endblock %}

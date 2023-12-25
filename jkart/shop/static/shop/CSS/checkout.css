@@ -28,11 +28,18 @@
 }
 
 .prod-name {
-    margin: 12px 25px;
+    margin: 12px 30px;
 }
 
 .divpr {
     margin: 12px 25px;
+}
+
+.time{
+    margin: 0px 30px;
+    background-color: aliceblue;
+    padding: 2px 16px;
+    border-radius: 4px;
 }
 
 .steps {
