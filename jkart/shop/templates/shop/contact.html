@@ -7,6 +7,7 @@
 {% block link %}
 <link rel="stylesheet" href="{% static 'shop/CSS/carousal.css' %}">
 <link rel="stylesheet" href="{% static 'shop/CSS/Form_page.css' %}">
+<link rel="stylesheet" href="{% static 'shop/CSS/checkout.css' %}">
 {% endblock %}
 
 {% block style %}
@@ -14,7 +15,7 @@
 
 
 {% block body %}
-<form action="/shop/contact/" method="post" class="contact-form">
+<form action="/shop/contact/" method="post" class="contact-form" id="contact">
     {% csrf_token %}
     <label for="name" class="input-levels">Enter Name</label>
     <input type="text" id="name" name="name" placeholder="Your Name" class="input-fields">
@@ -26,12 +27,29 @@
     <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" class="input-fields">
 
     <label for="desc" class="input-levels">Enter Description</label>
-    <textarea id="desc" name="desc" placeholder="Write Your Message Here...." cols="30" rows="10" class="input-fields"></textarea>
+    <textarea id="desc" name="desc" placeholder="Write Your Message Here...." cols="30" rows="10"
+        class="input-fields"></textarea>
 
     <div>
         <input type="submit" value="Submit" class="btn">
         <input type="reset" value="Reset" class="btn">
     </div>
 </form>
+{% if received %}
+<div class="display-status">
+    <div class="alert-box">
+        <h3>Thank You! {{name|capfirst}} </h3>
+        <h3>We will Comeback to You Soon</h3>
+        <h3 style="text-align: right;">Regards - Jkart</h3>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
 
+{% block script %}
+{% if received %}
+<script>
+    $("#contact").hide();
+</script>
+{% endif %}
 {% endblock %}

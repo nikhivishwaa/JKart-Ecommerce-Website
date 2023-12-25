@@ -98,11 +98,13 @@ def tracker(request):
 
 def contact(request):
     if request.method == "POST":
-        cantact = Contact()
-        cantact.name = request.POST.get('name')
-        cantact.email = request.POST.get('email')
-        cantact.phone = request.POST.get('phone')
-        cantact.desc = request.POST.get('desc')
-        cantact.save()
-        return HttpResponse('<h1>Message Submitted Successfully</h1>')
+        contact = Contact()
+        contact.name = request.POST.get('name')
+        contact.email = request.POST.get('email')
+        contact.phone = request.POST.get('phone')
+        contact.desc = request.POST.get('desc')
+        contact.save()
+        receipt = {"received": True, "name": contact.name}
+        return render(request, 'shop/contact.html', receipt)
+
     return render(request, 'shop/contact.html')
