@@ -16,6 +16,7 @@
         <form action="/shop/checkout/" method="post" class="order-form">
             {% csrf_token %}
             <input type="hidden" name="order_json" id="order_json">
+            <input type="hidden" name="amount" id="amount">
             <div class="row">
                 <div class="label-input">
                     <label for="name">Full Name</label>
@@ -78,7 +79,7 @@
 <script src="{% static 'shop/JS/checkout.js'%}"></script>
 <script>
     fillCheckoutPage();
-    $("#order_json").val(JSON.stringify(cart))
+    $("#order_json").val(JSON.stringify(cart));
     {% if confirmed %}
     $("#place-order").hide();
     cart = {}

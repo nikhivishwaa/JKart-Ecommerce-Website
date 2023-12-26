@@ -32,6 +32,7 @@ class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
     order_json = models.CharField(max_length=5000)
     email = models.EmailField()
+    amount = models.PositiveBigIntegerField(default=0)
     phone = models.PositiveBigIntegerField()
     address = models.CharField(max_length=300)
     name = models.CharField(max_length=100)

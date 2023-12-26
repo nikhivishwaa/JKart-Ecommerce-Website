@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .models import Product, Contact, Order, OrderUpdate
 from math import ceil
 import json
+from django.views.decorators.csrf import csrf_exempt
+from paytmchecksum import PaytmChecksum
 
 def index(request):
     # if request.method == 'POST':
@@ -53,6 +55,7 @@ def checkout(request):
         order = Order()
         order.order_json = request.POST.get("order_json", "")
         order.email = request.POST.get("email", "")
+        order.amount = request.POST.get("amount", "")
         order.phone = request.POST.get("phone", "")
         order.address = request.POST.get("address1", "") + " " + request.POST.get("address2", "")
         order.name = request.POST.get("name", "")
@@ -108,3 +111,20 @@ def contact(request):
         return render(request, 'shop/contact.html', receipt)
 
     return render(request, 'shop/contact.html')
+
+@csrf_exempt
+def payment(request):
+    body = '{"mid":"YOUR_MID_HERE","orderId":"YOUR_ORDER_ID_HERE"}'
+
+    #checksum that we need to verify
+    Checksum = "CHECKSUM_VALUE"
+
+    # Verify checksum
+    # Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
+
+    isVerifySignature = PaytmChecksum.verifySignature(body, "YOUR_MERCHANT_KEY", Checksum)
+    if isVerifySignature:
+        print("Checksum Matched")
+    else:
+        print("Checksum Mismatched")
+        pass

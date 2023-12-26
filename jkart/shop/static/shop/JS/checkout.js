@@ -50,4 +50,5 @@ function updateBill() {
         totalPrice += cart[key][0] * cart[key][2];
     }
     document.getElementById("totalPrice").innerHTML = totalPrice;
+    $("#amount").val(totalPrice);
 }
