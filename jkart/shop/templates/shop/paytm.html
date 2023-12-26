@@ -1,0 +1,23 @@
+{% extends 'shop/basic.html' %}
+
+
+{% block title %}Redirecting on Payment Gateway{% endblock %}
+
+
+{% block body %}
+
+<form action="https://securegw-stage.paytm.in/theia/processTransaction" method="post" name="payment">
+    {%for key, values in param_dict.items %}
+    <input type="hidden" name="{{key}}" value="{{value}}">
+    {% endfor %}
+</form>
+
+{% endblock %}
+{% block script %}
+<script>
+    document.payment.submit();
+</script>
+{% endblock %}
+
+
+

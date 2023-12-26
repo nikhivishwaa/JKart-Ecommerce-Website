@@ -6,6 +6,8 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from paytmchecksum import PaytmChecksum
 
+from Paytm.env_var import MID, MKEY
+
 def index(request):
     # if request.method == 'POST':
     #     print(request.POST.get('search'))
@@ -50,31 +52,6 @@ def prodView(request, id):
     return render(request, 'shop/product_page.html', {'product':product[0]})
 
 
-def checkout(request):
-    if request.method == "POST":
-        order = Order()
-        order.order_json = request.POST.get("order_json", "")
-        order.email = request.POST.get("email", "")
-        order.amount = request.POST.get("amount", "")
-        order.phone = request.POST.get("phone", "")
-        order.address = request.POST.get("address1", "") + " " + request.POST.get("address2", "")
-        order.name = request.POST.get("name", "")
-        order.state = request.POST.get("state", "")
-        order.city = request.POST.get("city", "")
-        order.zipcode = request.POST.get("zipcode", "")
-        order.status = "confirmed"
-        order.save()
-
-        up = OrderUpdate()
-        up.order_id = order.order_id
-        up.update_desc = order.status
-        up.time_stamp = order.order_date
-        up.save()
-        order_confirmation = {"confirmed": True, "status": order.status, "order_id": order.order_id}
-        return render(request, 'shop/checkout.html', order_confirmation)
-    return render(request, 'shop/checkout.html')
-
-
 def search(request):
     return render(request, 'shop/search.html')
 
@@ -112,19 +89,48 @@ def contact(request):
 
     return render(request, 'shop/contact.html')
 
+
+def checkout(request):
+    if request.method == "POST":
+        order = Order()
+        order.order_json = request.POST.get("order_json", "")
+        order.email = request.POST.get("email", "")
+        order.amount = request.POST.get("amount", "")
+        order.phone = request.POST.get("phone", "")
+        order.address = request.POST.get("address1", "") + " " + request.POST.get("address2", "")
+        order.name = request.POST.get("name", "")
+        order.state = request.POST.get("state", "")
+        order.city = request.POST.get("city", "")
+        order.zipcode = request.POST.get("zipcode", "")
+        order.status = "confirmed"
+        order.save()
+
+        up = OrderUpdate()
+        up.order_id = order.order_id
+        up.update_desc = order.status
+        up.time_stamp = order.order_date
+        up.save()
+        order_confirmation = {"confirmed": True, "status": order.status, "order_id": order.order_id}
+        # return render(request, 'shop/checkout.html', order_confirmation)
+        param_dict={
+            'MID': 'WorldP64425807474247',
+            'ORDERID': str(order.order_id),
+            'TXN_AMOUNT': '1',
+            'CUST_ID': str(order.email),
+            'INDUSTRY_TYPE_ID': 'Retail',
+            'WEBSITE': 'WEBSTAGING',
+            'CHANNEL_ID': 'WEB',
+            'CALLBACK_URL':'http://127.0.0.1:8000/shop/payment/',
+        }
+
+        Checksum = PaytmChecksum.generateSignature(param_dict, MKEY)
+        verifyChecksum = PaytmChecksum.verifySignature(param_dict, "YOUR_MERCHANT_KEY",Checksum)
+        param_dict['CHECKSUMHASH'] = PaytmChecksum.generateSignature(param_dict, MKEY, MID)
+        return render(request, 'shop/paytm.html', {"param_dict": param_dict})
+    
+    return render(request, 'shop/checkout.html')
+
+
 @csrf_exempt
 def payment(request):
-    body = '{"mid":"YOUR_MID_HERE","orderId":"YOUR_ORDER_ID_HERE"}'
-
-    #checksum that we need to verify
-    Checksum = "CHECKSUM_VALUE"
-
-    # Verify checksum
-    # Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
-
-    isVerifySignature = PaytmChecksum.verifySignature(body, "YOUR_MERCHANT_KEY", Checksum)
-    if isVerifySignature:
-        print("Checksum Matched")
-    else:
-        print("Checksum Mismatched")
-        pass
+    return HttpResponse("a aa aaa")
