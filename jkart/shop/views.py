@@ -134,3 +134,6 @@ def checkout(request):
 @csrf_exempt
 def payment(request):
     return HttpResponse("a aa aaa")
+
+def testapi(request):
+    return render(request, 'shop/apitest.html')

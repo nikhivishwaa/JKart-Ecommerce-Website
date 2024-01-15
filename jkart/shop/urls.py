@@ -10,4 +10,5 @@ urlpatterns = [
     path("payment/", views.payment, name="payment"),
     path("track/", views.tracker, name="tracker"),
     path("contact/", views.contact, name="contact"),
+    path("testapi/", views.testapi, name="testapi"),
 ]
